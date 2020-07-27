@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+        <!-- 指定数据库连接的属性 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:12345/usthe" userId="root"
+                        password="admin"/>
+        <!-- 连接工厂，同jdbcConnection -->
+<!--        <connectionFactory>-->
+<!--            <property name="driverClass" value="org.hsqldb.jdbcDriver"/>-->
+<!--            <property name="connectionURL" value="jdbc:hsqldb:mem:aname"/>-->
+<!--            <property name="userId" value="sa"/>-->
+<!--        </connectionFactory>-->
+        <!-- 生成java模型 -->
+        <javaModelGenerator targetPackage="com.mezo.chaos.eros.system.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+        <!--生成SQL映射-->
+        <sqlMapGenerator targetPackage="mapper.sys" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成接口和类 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mezo.chaos.eros.system.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- short，int，long 等都转换成bigDecimal -->
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+        <!-- 注释生成器-->
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <property name="addRemarkComments" value="false" />
+            <property name="inhibitorAllComments" value="true" />
+        </commentGenerator>
+        <table tableName="FooTable" enableSelectByExample="false" enableCountByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false" alias="MyBatis3DynamicSql" >
+            <!-- 重命名数据库表 例如将Sys开头替换称空-->
+            <domainObjectRenamingRule searchString="^Sys" replaceString="" />
+            <!-- 重命名表字段 例如将Sys开头替换称空-->
+            <columnRenamingRule searchString="^Sys" replaceString="" />
+            <!-- 根据正则匹配，忽略字段 -->
+            <ignoreColumnsByRegex pattern="(?i)col.*">
+                <!-- 以下字段除外 -->
+                <except column="col01"/>
+                <except column="col13"/>
+            </ignoreColumnsByRegex>
+        </table>
+    </context>
+</generatorConfiguration>
