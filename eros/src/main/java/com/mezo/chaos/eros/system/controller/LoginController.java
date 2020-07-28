@@ -1,6 +1,6 @@
 package com.mezo.chaos.eros.system.controller;
 
-import com.mezo.chaos.eros.system.service.UserService;
+import com.mezo.chaos.eros.system.service.LoginService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user")
 public class LoginController {
 
-    private UserService userService;
+    private LoginService loginService;
 
     @RequestMapping("/toLogin")
     public String toLogin() {
